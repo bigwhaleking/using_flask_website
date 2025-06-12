@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>봄날마켓 - 설레는 중고거래</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="homepage-body">
+    <div class="homepage-container">
+        <header class="homepage-header">
+            <div class="logo">
+                <a href="{{ url_for('first') }}">봄날마켓</a>
+            </div>
+            <nav class="user-nav">
+                <a href="{{ url_for('my_page') }}">마이페이지</a>
+                <a href="#">로그인</a> <a href="#">회원가입</a>
+            </nav>
+        </header>
+
+        <main class="homepage-main">
+            <h1 class="homepage-title">어떤 보물을 찾고 계신가요?</h1>
+            <form class="homepage-search-form" action="{{ url_for('main') }}" method="get">
+                <div class="homepage-search-input-wrapper">
+                    <input type="text" name="query" class="homepage-search-input" placeholder="따스한 봄날, 설레는 거래를 시작하세요!">
+                </div>
+                <button type="submit" class="homepage-search-button">검색</button>
+            </form>
+        </main>
+
+        <footer class="homepage-footer">
+            <p>&copy; 2025 봄날마켓. 모든 권리 보유.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>봄날마켓 - 커뮤니티</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    {% include 'sticky-header-wrapper.html' %}
+
+    <div class="board-page-container">
+        <aside class="board-sidebar">
+            <h2 class="sidebar-title">커뮤니티</h2>
+            <ul class="board-menu">
+                <li><a href="#" class="board-menu-item active" data-board-id="notice" data-board-name="공지사항">공지사항</a></li>
+                <li><a href="#" class="board-menu-item" data-board-id="wanted" data-board-name="물건 구해요">물건 구해요</a></li>
+                <li><a href="#" class="board-menu-item" data-board-id="selling" data-board-name="물건 팔아요">물건 팔아요</a></li>
+                <li><a href="#" class="board-menu-item" data-board-id="qna" data-board-name="Q & A">Q & A</a></li>
+                <li><a href="#" class="board-menu-item" data-board-id="search" data-board-name="찾은 글" style="pointer-events: none;"></a></li>
+            </ul>
+        </aside>
+
+        <main class="board-main">
+            <div class="board-header">
+                <h3 id="board-title">공지사항</h3>
+                <div class="board-actions">
+                    <div class="board-search">
+                        <input type="text" id="board-search-input" placeholder="게시글 검색">
+                        <button id="board-search-button"><i class="fas fa-search"></i></button>
+                    </div>
+                    <a href="{{ url_for('write_post') }}" id="write-post-link" class="write-post-btn"><i class="fas fa-pen"></i> 글쓰기</a>
+                </div>
+            </div>
+
+            <div class="post-list-container">
+                <table class="post-table">
+                    <thead>
+                        <tr>
+                            <th class="col-num">번호</th>
+                            <th class="col-type">구분</th>
+                            <th class="col-title">제목</th>
+                            <th class="col-author">작성자</th>
+                            <th class="col-date">작성일</th>
+                            <th class="col-views">조회</th>
+                        </tr>
+                    </thead>
+                    <tbody id="post-list-body">
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination board-pagination" id="pagination-container"></div>
+        </main>
+    </div>
+
+    <footer class="results-footer">
+        <p>&copy; 2025 봄날마켓. 모든 권리 보유.</p>
+        <p><a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

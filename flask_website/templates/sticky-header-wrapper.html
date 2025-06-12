@@ -1,0 +1,90 @@
+<!-- templates/sticky-header-wrapper.html 예시 -->
+<div class="sticky-header-wrapper">
+    <header class="top-bar results-top-bar">
+        <div class="logo">
+            <a href="{{ url_for('main') }}">봄날마켓</a>
+        </div>
+        <nav class="user-nav">
+            {% if token %}
+                <a href="{{ url_for('my_page') }}">마이페이지</a>
+                <a href="{{ url_for('logout') }}">로그아웃</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">로그인</a>
+                <a href="{{ url_for('register') }}">회원가입</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <nav class="main-nav results-main-nav">
+        <div class="custom-dropdown-wrapper main-category-nav-dropdown">
+            <button type="button" id="all-categories-btn" class="nav-item dropdown-trigger">
+                전체 카테고리 <span class="arrow">&#9662;</span>
+            </button>
+            <div class="mega-menu dropdown-panel" id="mega-menu-content">
+                <div class="selected-categories-panel" id="selected-categories-container"><h4>선택된 카테고리:</h4><div class="selected-list" id="selected-list-items"></div></div>
+                <div class="mega-menu-categories-wrapper">
+                    <div class="mega-menu-column"><h4>디지털기기</h4><ul><li><a href="#" data-category="digital-phone" data-category-name="스마트폰">스마트폰</a></li><li><a href="#" data-category="digital-tablet" data-category-name="태블릿">태블릿</a></li><li><a href="#" data-category="digital-notebookpc" data-category-name="노트북/PC">노트북/PC</a></li><li><a href="#" data-category="digital-camera" data-category-name="카메라">카메라</a></li><li><a href="#" data-category="digital-audio" data-category-name="음향기기">음향기기</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>생활가전</h4><ul><li><a href="#" data-category="appliance-tv" data-category-name="TV/영상가전">TV/영상가전</a></li><li><a href="#" data-category="appliance-refrigerator" data-category-name="냉장고">냉장고</a></li><li><a href="#" data-category="appliance-washer" data-category-name="세탁기/건조기">세탁기/건조기</a></li><li><a href="#" data-category="appliance-kitchen" data-category-name="주방가전">주방가전</a></li><li><a href="#" data-category="appliance-season" data-category-name="계절가전">계절가전</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>가구/인테리어</h4><ul><li><a href="#" data-category="furniture-bed" data-category-name="침대/매트리스">침대/매트리스</a></li><li><a href="#" data-category="furniture-sofa" data-category-name="소파/테이블">소파/테이블</a></li><li><a href="#" data-category="furniture-storage" data-category-name="수납가구">수납가구</a></li><li><a href="#" data-category="furniture-lighting" data-category-name="조명/인테리어소품">조명/소품</a></li><li><a href="#" data-category="furniture-office" data-category-name="사무용가구">사무용가구</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>여성의류</h4><ul><li><a href="#" data-category="women-outer" data-category-name="아우터(여성)">아우터</a></li><li><a href="#" data-category="women-top" data-category-name="상의(여성)">상의</a></li><li><a href="#" data-category="women-bottom" data-category-name="하의/스커트(여성)">하의/스커트</a></li><li><a href="#" data-category="women-dress" data-category-name="원피스">원피스</a></li><li><a href="#" data-category="women-shoesbag" data-category-name="신발/가방(여성)">신발/가방</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>남성의류</h4><ul><li><a href="#" data-category="men-outer" data-category-name="아우터(남성)">아우터</a></li><li><a href="#" data-category="men-top" data-category-name="상의(남성)">상의</a></li><li><a href="#" data-category="men-bottom" data-category-name="하의/팬츠(남성)">하의/팬츠</a></li><li><a href="#" data-category="men-suit" data-category-name="정장/셔츠">정장/셔츠</a></li><li><a href="#" data-category="men-shoesbag" data-category-name="신발/가방(남성)">신발/가방</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>패션잡화</h4><ul><li><a href="#" data-category="fashion-jewelry" data-category-name="시계/주얼리">시계/주얼리</a></li><li><a href="#" data-category="fashion-hatglass" data-category-name="모자/선글라스">모자/선글라스</a></li><li><a href="#" data-category="fashion-scarf" data-category-name="스카프/벨트">스카프/벨트</a></li><li><a href="#" data-category="fashion-shoes" data-category-name="신발(공용)">신발(공용)</a></li><li><a href="#" data-category="fashion-bagwallet" data-category-name="가방/지갑(공용)">가방/지갑(공용)</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>유아동용품</h4><ul><li><a href="#" data-category="kids-clothes" data-category-name="유아의류/신발">유아의류/신발</a></li><li><a href="#" data-category="kids-toys" data-category-name="장난감/교구">장난감/교구</a></li><li><a href="#" data-category="kids-stroller" data-category-name="유모차/카시트">유모차/카시트</a></li><li><a href="#" data-category="kids-feeding" data-category-name="수유/이유용품">수유/이유용품</a></li><li><a href="#" data-category="kids-diapers" data-category-name="기저귀/물티슈">기저귀/물티슈</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>도서/음반/티켓</h4><ul><li><a href="#" data-category="culture-books" data-category-name="소설/교양도서">소설/교양도서</a></li><li><a href="#" data-category="culture-studybooks" data-category-name="학습/참고서">학습/참고서</a></li><li><a href="#" data-category="culture-comics" data-category-name="만화/아동도서">만화/아동도서</a></li><li><a href="#" data-category="culture-music" data-category-name="CD/LP">CD/LP</a></li><li><a href="#" data-category="culture-tickets" data-category-name="공연/영화티켓">공연/영화티켓</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>뷰티/미용</h4><ul><li><a href="#" data-category="beauty-skincare" data-category-name="스킨케어">스킨케어</a></li><li><a href="#" data-category="beauty-makeup" data-category-name="메이크업">메이크업</a></li><li><a href="#" data-category="beauty-hairbody" data-category-name="헤어/바디">헤어/바디</a></li><li><a href="#" data-category="beauty-perfume" data-category-name="향수">향수</a></li><li><a href="#" data-category="beauty-device" data-category-name="미용기기">미용기기</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>스포츠/레저</h4><ul><li><a href="#" data-category="sports-outdoor" data-category-name="등산/캠핑">등산/캠핑</a></li><li><a href="#" data-category="sports-bike" data-category-name="자전거/인라인">자전거/인라인</a></li><li><a href="#" data-category="sports-golf" data-category-name="골프용품">골프용품</a></li><li><a href="#" data-category="sports-health" data-category-name="헬스/요가">헬스/요가</a></li><li><a href="#" data-category="sports-fishing" data-category-name="낚시용품">낚시용품</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>반려동물용품</h4><ul><li><a href="#" data-category="pet-food" data-category-name="사료/간식">사료/간식</a></li><li><a href="#" data-category="pet-clothes" data-category-name="의류/액세서리(펫)">의류/액세서리</a></li><li><a href="#" data-category="pet-house" data-category-name="집/장난감(펫)">집/장난감</a></li><li><a href="#" data-category="pet-beauty" data-category-name="미용/목욕(펫)">미용/목욕</a></li><li><a href="#" data-category="pet-carrier" data-category-name="이동장/울타리(펫)">이동장/울타리</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>취미/게임/수집품</h4><ul><li><a href="#" data-category="hobby-console" data-category-name="게임기/타이틀">게임기/타이틀</a></li><li><a href="#" data-category="hobby-figure" data-category-name="프라모델/피규어">피규어/모델</a></li><li><a href="#" data-category="hobby-instrument" data-category-name="악기">악기</a></li><li><a href="#" data-category="hobby-art" data-category-name="미술/공예">미술/공예</a></li><li><a href="#" data-category="hobby-collect" data-category-name="수집품(우표/화폐 등)">수집품</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>차량/오토바이 용품</h4><ul><li><a href="#" data-category="vehicle-bikeacc" data-category-name="자전거 부품/용품">자전거 부품/용품</a></li><li><a href="#" data-category="vehicle-motoracc" data-category-name="오토바이 부품/용품">오토바이 부품/용품</a></li><li><a href="#" data-category="vehicle-caracc" data-category-name="차량용품">차량용품</a></li><li><a href="#" data-category="vehicle-eboard" data-category-name="전동킥보드/휠">전동킥보드/휠</a></li><li><a href="#" data-category="vehicle-tires" data-category-name="타이어/휠">타이어/휠</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>공구/산업용품</h4><ul><li><a href="#" data-category="tools-power" data-category-name="전동공구">전동공구</a></li><li><a href="#" data-category="tools-hand" data-category-name="수공구">수공구</a></li><li><a href="#" data-category="tools-measure" data-category-name="측정공구">측정공구</a></li><li><a href="#" data-category="tools-safety" data-category-name="안전용품">안전용품</a></li><li><a href="#" data-category="tools-industrial" data-category-name="산업자재">산업자재</a></li></ul></div>
+                    <div class="mega-menu-column"><h4>생활용품/기타</h4><ul><li><a href="#" data-category="etc-kitchenware" data-category-name="주방용품(비가전)">주방용품(비가전)</a></li><li><a href="#" data-category="etc-bathroom" data-category-name="욕실용품">욕실용품</a></li><li><a href="#" data-category="etc-cleaning" data-category-name="청소/세탁용품">청소/세탁용품</a></li><li><a href="#" data-category="etc-stationery" data-category-name="문구/사무용품">문구/사무용품</a></li><li><a href="#" data-category="etc-plants" data-category-name="식물/원예">식물/원예</a></li></ul></div>
+                </div>
+            </div>
+        </div>
+        <a href="{{ url_for('main') }}" class="nav-item">물품보기</a>
+        <a href="{{ url_for('community') }}" class="nav-item">커뮤니티</a>
+        <a href="{{ url_for('sell_item') }}" class="nav-item sell-button">판매하기</a>
+    </nav>
+
+    <div class="srp-search-bar-container">
+        <form class="srp-search-form" action="{{ url_for('main') }}" method="get">
+            <input type="text" name="query" class="srp-search-input" placeholder="찾으시는 물품을 검색해보세요" value="{{ query if query }}">
+            <button type="submit" class="srp-search-button">검색</button>
+        </form>
+    </div>
+
+    <div class="srp-controls-bar">
+        <div class="srp-filters">
+            <div class="custom-dropdown-wrapper" id="srp-category-filter">
+                <button type="button" class="filter-trigger dropdown-trigger">
+                    <span class="trigger-text">카테고리 선택</span> <span class="arrow">&#9662;</span>
+                </button>
+                <div class="filter-dropdown-panel category-filter-panel dropdown-panel">
+                    <div class="category-filter-main-list"></div>
+                    <div class="category-filter-sub-list-area"></div>
+                </div>
+            </div>
+            <div class="custom-dropdown-wrapper" id="srp-region-filter">
+                <button type="button" class="filter-trigger dropdown-trigger">
+                    <span class="trigger-text">지역 선택</span> <span class="arrow">&#9662;</span>
+                </button>
+                <div class="filter-dropdown-panel region-filter-panel dropdown-panel">
+                    <div class="region-selector-columns">
+                        <div class="region-column" id="srp-region-province-column"></div>
+                        <div class="region-column" id="srp-region-city-column"></div>
+                    </div>
+                    <div class="selected-region-display" style="display: none;">선택 지역: <span>없음</span></div>
+                </div>
+            </div>
+            <label class="srp-checkbox-label"><input type="checkbox" name="safe-trade-srp"> 안전거래만</label>
+        </div>
+        <form action = "{{  url_for('main')  }}">
+            <div class="srp-sorting-options">
+                <button type="submit" name="sort" value="popularity" class="srp-sort-button{% if sort == 'popularity' or not sort %} active{% endif %}">인기순</button>
+                <button type="submit" name="sort" value="latest" class="srp-sort-button{% if sort == 'latest' %} active{% endif %}">최신순</button>
+                <button type="submit" name="sort" value="price_asc" class="srp-sort-button{% if sort == 'price_asc' %} active{% endif %}">가격 낮은 순</button>
+                <button type="submit" name="sort" value="price_desc" class="srp-sort-button{% if sort == 'price_desc' %} active{% endif %}">가격 높은 순</button>
+            </div>
+        </form>
+    </div>
+</div>

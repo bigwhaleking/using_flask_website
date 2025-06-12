@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>봄날마켓 - 검색 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'sticky-header-wrapper.html' %}
+
+    <div class="results-page-container">
+        <main class="item-list-section">
+            <h2 id="srp-list-title">추천 물품</h2>
+            <div class="item-grid">
+                {% for item in items %}
+                    <a href="{{ url_for('item_page') }}?item_id={{ item._id}}">
+                        <div class="item-card">
+                            <img src="{{ item.img_list[0] }}" alt = "상품 이미지">
+                            <div class="item-info">
+                                <h3>{{ item.title }}</h3>
+                                <p class="price">{{ item.price }} 원</p>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="pagination">
+                {% if page > 1 %}
+                    <a href="{{ url_for('main', page=page-1, query=query, sort=sort, selected_category_id=selected_category_id, selected_category_name=selected_category_name) }}" class="page-link">&laquo; 이전</a>
+                {% endif %}
+                {% for p in range(1, total_pages+1) %}
+                    <a href="{{ url_for('main', page=p, query=query, sort=sort, selected_category_id=selected_category_id, selected_category_name=selected_category_name) }}"
+                        class="page-link {% if p == page %}active{% endif %}">{{ p }}</a>
+                {% endfor %}
+                {% if page < total_pages %}
+                    <a href="{{ url_for('main', page=page+1, query=query, sort=sort, selected_category_id=selected_category_id, selected_category_name=selected_category_name) }}" class="page-link">다음 &raquo;</a>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+
+    <footer class="results-footer">
+        <p>&copy; 2025 봄날마켓. 모든 권리 보유.</p>
+        <p><a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>봄날마켓 - 글쓰기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    {% include 'sticky-header-wrapper.html' %}
+
+    <div class="write-post-page-container">
+        <div class="write-post-main">
+            <h2 class="write-post-title-main">커뮤니티 글쓰기</h2>
+
+            <form action="{{ url_for('write_post') }}" method="POST">
+                <div class="form-group form-group-board-select">
+                    <select id="board-category-select" name="board_category" class="form-control">
+                        <option value="" disabled selected>게시판 선택</option>
+                        <option value="wanted">물건 구해요</option>
+                        <option value="selling">물건 팔아요</option>
+                        <option value="qna">Q & A</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="post-title" name="post_title" class="form-control form-control-title" placeholder="제목을 입력해주세요.">
+                </div>
+
+                <div class="form-group editor-toolbar">
+                    <select id="font-size-select" class="editor-tool">
+                        <option value="12px">12px</option>
+                        <option value="14px" selected>14px</option>
+                        <option value="16px">16px</option>
+                        <option value="18px">18px</option>
+                        <option value="20px">20px</option>
+                    </select>
+                    <button type="button" class="editor-tool" data-command="bold"><i class="fas fa-bold"></i></button>
+                    <button type="button" class="editor-tool" data-command="italic"><i class="fas fa-italic"></i></button>
+                    <button type="button" class="editor-tool" data-command="underline"><i class="fas fa-underline"></i></button>
+                    <button type="button" class="editor-tool" data-command="strikeThrough"><i class="fas fa-strikethrough"></i></button>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="post-content" name="post_content" class="form-control form-control-content" rows="15" placeholder="내용을 입력하세요."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="post-tags" name="post_tags" class="form-control" placeholder="#태그를 입력해주세요. (최대 10개 쉼표로 구분)">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="cancel-post-button" class="btn btn-secondary">취소</button>
+                    <button type="submit" id="submit-post-button" class="btn btn-primary">등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="results-footer">
+        <p>&copy; 2025 봄날마켓. 모든 권리 보유.</p>
+        <p><a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

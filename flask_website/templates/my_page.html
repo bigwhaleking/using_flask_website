@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>봄날마켓 - 마이페이지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    {% include 'sticky-header-wrapper.html' %}
+
+    <div class="my-page-container">
+        <h2 class="my-page-title-main">마이페이지</h2>
+        <div class="my-page-content">
+            <section class="user-profile-section card-style-section">
+                <h3><i class="fas fa-user-edit"></i> 회원 정보 수정</h3>
+                <form id="user-profile-form">
+                    <div class="form-group-mypage">
+                        <label for="user-name">이름</label>
+                        <form method="GET">
+                            <input type="text" id="user-name" name="user_name" class="form-control-mypage" value = "{{ user_info.name }}" readonly>
+                        </form>
+                    </div>
+                    <div class="form-group-mypage">
+                        <label for="user-phone">전화번호</label>
+                        <form method="GET">
+                            <input type="tel" id="user-phone" name="user_phone" class="form-control-mypage" placeholder="예: 010-1234-5678" value = "{{ user_info.phone }}" readonly>
+                        </form>
+                    </div>
+                    <div class="form-actions-mypage">
+                        <button type="button" id="edit-profile-button" class="btn btn-secondary"><i class="fas fa-pencil-alt"></i> 수정하기</button>
+                        <button type="submit" id="save-profile-button" class="btn btn-primary" style="display:none;"><i class="fas fa-save"></i> 저장하기</button>
+                        <button type="button" id="cancel-edit-button" class="btn btn-tertiary" style="display:none;">취소</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="user-activity-section card-style-section">
+                <h3><i class="fas fa-history"></i> 나의 활동</h3>
+                <ul class="activity-list">
+                    <li><a href="{{ url_for('community', board_to_show='my-posts') }}"><i class="fas fa-file-alt"></i> 내가 쓴 글 보기</a></li>
+                    <li><a href="{{ url_for('sell_item') }}"><i class="fas fa-store"></i> 판매 상품 등록/관리</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-bag"></i> 구매 내역 (준비중)</a></li>
+                    <li><a href="#"><i class="fas fa-heart"></i> 내가 찜한 목록 (준비중)</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <footer class="results-footer">
+        <p>&copy; 2025 봄날마켓. 모든 권리 보유.</p>
+        <p><a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

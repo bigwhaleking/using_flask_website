@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>봄날마켓 - 게시물 상세</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    {% include 'sticky-header-wrapper.html' %}
+
+    <div class="community-container">
+        <main class="community-section">
+            <h2 class="community-title">{{ item.category }}</h2>
+
+            <div class="community-card">
+                <div class="community-info">
+                    <p class="title"><strong>제목:</strong>{{ item.title }}</p>
+                    <p class="author"><strong>작성자:</strong>{{ user_info.name }}</p>
+                    <div class="community-content">
+                        <h4>내용</h4>
+                        <p>{{ item.content }}</p>
+                    </div>
+                </div>
+                <!-- 댓글 영역 -->
+                <section id="post-comments">
+                    <form method="post" action="/post_comment">
+                        <input type="hidden" name="id" value="{{ item._id }}">
+                        <input type="hidden" name="page" value="community_page">
+                        <div id="post-comments-list">
+                            {% for comment in item.comment %}
+                                <div>{{ comment }}</div>
+                            {% endfor %}
+                        </div>
+                        <h4>댓글 달기</h4>
+                        <textarea name="comment" class="custom-textarea post-comment-textarea" placeholder="댓글을 입력하세요..."></textarea>
+                        <div style="margin-top: 16px;">
+                            <button type="submit" class="btn post-btn-primary">댓글 작성</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <div class="post-back-button">
+                <a class="btn post-btn-secondary" href="{{ url_for('main') }}">메인으로 돌아가기</a>
+            </div>
+        </main>
+    </div>
+
+    <footer class="results-footer" style="text-align:center; padding:20px 0;">
+        <p>&copy; 2025 봄날마켓. 모든 권리 보유.</p>
+        <p><a href="#">이용약관</a> | <a href="#">개인정보처리방침</a></p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
